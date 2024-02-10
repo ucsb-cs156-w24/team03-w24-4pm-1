@@ -11,9 +11,9 @@ Deployments:
 |-----------------------------|--------------|-------------------|
 | `UCSBDiningCommonsMenuItem` | Tyler        |TianyiYang-Tyler   |
 | `UCSBOrganization`          | Alex         |alexanderthomasucsb|
-| `RecommendationRequest`     |  Arnav       | aarnavkumar       |
+| `RecommendationRequest`     | Arnav        | aarnavkumar       |
 | `MenuItemReview`            | Anthony      | jinanthony        |
-| `HelpRequest`               |  Likhit      | jtanggy           |
+| `HelpRequest`               | Likhit       | jtanggy           |
 | `Articles`                  | Chris        | chrisriney4       |
 
 
