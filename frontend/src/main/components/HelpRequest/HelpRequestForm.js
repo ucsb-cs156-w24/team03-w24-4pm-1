@@ -10,15 +10,14 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
         register,
         formState: { errors },
         handleSubmit,
+        watch,
     } = useForm(
         { defaultValues: initialContents || {}, }
     );
     // Stryker restore all
    
     const navigate = useNavigate();
-    const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-
-    const testIdPrefix = "HelpRequestForm";
+    const testIdPrefix = "HelpRequestForm-";
 
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
@@ -27,7 +26,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                 <Form.Group className="mb-3" >
                     <Form.Label htmlFor="id">Id</Form.Label>
                     <Form.Control
-                        data-testid={testIdPrefix + "-id"}
+                        data-testid={testIdPrefix + "id"}
                         id="id"
                         type="text"
                         {...register("id")}
@@ -40,7 +39,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="requesterEmail">RequesterEmail</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-requesterEmail"}
+                    data-testid={testIdPrefix + "requesterEmail"}
                     id="requesterEmail"
                     type="text"
                     isInvalid={Boolean(errors.requesterEmail)}
@@ -55,12 +54,12 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="teamID">TeamID</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-teamID"}
+                    data-testid={testIdPrefix + "teamID"}
                     id="teamID"
                     type="text"
                     isInvalid={Boolean(errors.teamID)}
                     {...register("teamID", {
-                        required: "teamID is required."
+                        required: "TeamID is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -70,7 +69,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="tableOrBreakoutRoom">TableOrBreakoutRoom</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-tableOrBreakoutRoom"}
+                    data-testid={testIdPrefix + "tableOrBreakoutRoom"}
                     id="tableOrBreakoutRoom"
                     type="text"
                     isInvalid={Boolean(errors.tableOrBreakoutRoom)}
@@ -86,21 +85,23 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="requestTime">RequestTime (iso format)</Form.Label>
                 <Form.Control
-                    data-testid="HelpRequestForm-requestTime"
+                    data-testid={testIdPrefix + "requestTime"}
                     id="requestTime"
                     type="datetime-local"
                     isInvalid={Boolean(errors.requestTime)}
-                    {...register("requestTime", { required: true, pattern: isodate_regex })}
+                    {...register("requestTime", { 
+                        required: "RequestTime is required." 
+                    })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.requestTime && 'RequestTime is required. '}
+                    {errors.requestTime?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="explanation">Explanation</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-explanation"}
+                    data-testid={testIdPrefix + "explanation"}
                     id="explanation"
                     type="text"
                     isInvalid={Boolean(errors.explanation)}
@@ -115,15 +116,13 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
 
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="solved">Solved</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-solved"}
+                <Form.Check
+                    type="switch"
                     id="solved"
-                    type="boolean"
+                    data-testid={testIdPrefix + "solved"}
+                    label="Solved"
+                    checked={watch("solved")}
                     isInvalid={Boolean(errors.solved)}
-                    {...register("solved", {
-                        required: "Solved is required."
-                    })}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.solved?.message}
@@ -133,14 +132,14 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
 
             <Button
                 type="submit"
-                data-testid={testIdPrefix + "-submit"}
+                data-testid={testIdPrefix + "submit"}
             >
                 {buttonLabel}
             </Button>
             <Button
                 variant="Secondary"
                 onClick={() => navigate(-1)}
-                data-testid={testIdPrefix + "-cancel"}
+                data-testid={testIdPrefix + "cancel"}
             >
                 Cancel
             </Button>

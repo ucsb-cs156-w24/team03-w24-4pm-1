@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 describe("HelpRequestForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["RequesterEmail", "TeamID", "TableOrBreakoutRoom", "Explanation", "Solved"];
+    const expectedHeaders = ["RequesterEmail", "TeamID", "TableOrBreakoutRoom", "Explanation"];
     const testId = "HelpRequestForm";
 
     test("renders correctly with no initialContents", async () => {
@@ -52,9 +52,29 @@ describe("HelpRequestForm tests", () => {
             const header = screen.getByText(headerText);
             expect(header).toBeInTheDocument();
         });
-
         expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
         expect(screen.getByText(`Id`)).toBeInTheDocument();
+        const sButton = screen.getByTestId("HelpRequestForm-solved");
+        expect(sButton.checked).toEqual(true);
+        expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
+    });
+    test("Correct Error messsages on missing input", async () => {
+
+        render(
+            <Router  >
+                <HelpRequestForm />
+            </Router>
+        );
+        await screen.findByTestId("HelpRequestForm-submit");
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/TeamID is required./);
+        expect(screen.getByText(/RequesterEmail is required./)).toBeInTheDocument();
+        expect(screen.getByText(/RequestTime is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
+        expect(screen.getByText(/TableOrBreakoutRoom is required./)).toBeInTheDocument();
     });
 
 
@@ -89,7 +109,36 @@ describe("HelpRequestForm tests", () => {
 
         await screen.findByText(/RequesterEmail is required/);
         expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
+        expect(screen.getByText(/TeamID is required/)).toBeInTheDocument();
+        expect(screen.getByText(/TableOrBreakoutRoom is required/)).toBeInTheDocument();
 
     });
 
+    test("No Error messsages on good input", async () => {
+
+        const mockSubmitAction = jest.fn();
+
+
+        render(
+            <Router  >
+                <HelpRequestForm submitAction={mockSubmitAction} />
+            </Router>
+        );
+        await screen.findByTestId("HelpRequestForm-requesterEmail");
+
+        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+        const teamIDField = screen.getByTestId("HelpRequestForm-teamID");
+        const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
+        const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
+        const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+        const submitButton = screen.getByTestId("HelpRequestForm-submit");
+        fireEvent.change(requesterEmailField, { target: { value: 'john' } });
+        fireEvent.change(teamIDField, { target: { value: '69' } });
+        fireEvent.change(tableOrBreakoutRoomField, { target: { value: '01' } });
+        fireEvent.change(requestTimeField, { target: { value: '2022-01-02T12:00:00'} });
+        fireEvent.change(explanationField, { target: { value: 'explanation' } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+    });
 });
