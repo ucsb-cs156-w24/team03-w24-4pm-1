@@ -14,7 +14,7 @@ export default function HelpRequestTable({
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
-        navigate(`/helpRequest/edit/${cell.row.values.id}`)
+        navigate(`/helprequests/edit/${cell.row.values.id}`)
     }
 
     // Stryker disable all : hard to test for query caching
@@ -24,7 +24,7 @@ export default function HelpRequestTable({
         { onSuccess: onDeleteSuccess },
         ["/api/helpRequest/all"]
     );
-    // Stryker restore all 
+    // Stryker restore all
 
     // Stryker disable next-line all : TODO try to make a good test for this
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
