@@ -5,7 +5,7 @@ import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
 export default {
-    title: 'components/HelpRequests/HelpRequestTable',
+    title: 'components/HelpRequest/HelpRequestTable',
     component: HelpRequestTable
 };
 
@@ -36,7 +36,7 @@ ThreeItemsAdminUser.args = {
 
 ThreeItemsAdminUser.parameters = {
     msw: [
-        rest.delete('/api/helpRequest', (req, res, ctx) => {
+        rest.delete('/api/helprequests', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),

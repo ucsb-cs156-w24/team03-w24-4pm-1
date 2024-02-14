@@ -1,6 +1,7 @@
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
@@ -11,6 +12,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
         formState: { errors },
         handleSubmit,
         watch,
+        setValue,
     } = useForm(
         { defaultValues: initialContents || {}, }
     );
@@ -18,7 +20,14 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
    
     const navigate = useNavigate();
     const testIdPrefix = "HelpRequestForm-";
-
+    const handleSolvedChange = (e) => {
+        setValue("solved", e.target.checked); // Update the value of "solved"
+    };
+    useEffect(() => {
+        if (!initialContents?.hasOwnProperty("solved")) {
+            setValue("solved", false);
+        }
+    }, [initialContents, setValue]);
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
 
@@ -52,18 +61,18 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="teamID">TeamID</Form.Label>
+                <Form.Label htmlFor="teamId">TeamId</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "teamID"}
-                    id="teamID"
+                    data-testid={testIdPrefix + "teamId"}
+                    id="teamId"
                     type="text"
-                    isInvalid={Boolean(errors.teamID)}
-                    {...register("teamID", {
-                        required: "TeamID is required."
+                    isInvalid={Boolean(errors.teamId)}
+                    {...register("teamId", {
+                        required: "TeamId is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.teamID?.message}
+                    {errors.teamId?.message}
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" >
@@ -123,6 +132,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                     label="Solved"
                     checked={watch("solved")}
                     isInvalid={Boolean(errors.solved)}
+                    onChange={handleSolvedChange}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.solved?.message}

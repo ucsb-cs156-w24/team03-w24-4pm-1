@@ -14,7 +14,7 @@ export default function HelpRequestTable({
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
-        navigate(`/helprequests/edit/${cell.row.values.id}`)
+        navigate(`/helprequest/edit/${cell.row.values.id}`)
     }
 
     // Stryker disable all : hard to test for query caching
@@ -22,7 +22,7 @@ export default function HelpRequestTable({
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/helpRequest/all"]
+        ["/api/helprequests/all"]
     );
     // Stryker restore all
 
@@ -41,8 +41,8 @@ export default function HelpRequestTable({
         },
         
         {
-            Header: 'TeamID',
-            accessor: 'teamID',
+            Header: 'TeamId',
+            accessor: 'teamId',
         },
         {
             Header: 'TableOrBreakoutRoom',
@@ -58,7 +58,7 @@ export default function HelpRequestTable({
         },
         {
             Header: 'Solved',
-            accessor: 'solved',
+            accessor: (row) => row.solved ? 'true' : 'false'
         }
     ];
 

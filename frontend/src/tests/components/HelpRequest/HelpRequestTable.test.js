@@ -16,8 +16,8 @@ jest.mock('react-router-dom', () => ({
 describe("HelpRequestTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "RequesterEmail", "TeamID", "TableOrBreakoutRoom", "RequestTime", "Explanation", "Solved"];
-  const expectedFields = ["id", "requesterEmail", "teamID", "tableOrBreakoutRoom", "requestTime", "explanation", "solved"];
+  const expectedHeaders = ["id", "RequesterEmail", "TeamId", "TableOrBreakoutRoom", "RequestTime", "Explanation", "Solved"];
+  const expectedFields = ["id", "requesterEmail", "teamId", "tableOrBreakoutRoom", "requestTime", "explanation", "Solved"];
   const testId = "HelpRequestTable";
 
   test("renders empty table correctly", () => {
@@ -145,7 +145,7 @@ describe("HelpRequestTable tests", () => {
     fireEvent.click(editButton);
 
     // assert - check that the navigate function was called with the expected path
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/helprequests/edit/2'));
+    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/helprequest/edit/2'));
 
   });
 
