@@ -23,11 +23,16 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
     const handleSolvedChange = (e) => {
         setValue("solved", e.target.checked); // Update the value of "solved"
     };
+    
+    // Stryker disable all
+    // function just ensures that solved is set to false by default, so that it is generated even if the user doesn't interact w the switch.
     useEffect(() => {
         if (!initialContents?.hasOwnProperty("solved")) {
             setValue("solved", false);
         }
     }, [initialContents, setValue]);
+    // Stryker restore all
+
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
 

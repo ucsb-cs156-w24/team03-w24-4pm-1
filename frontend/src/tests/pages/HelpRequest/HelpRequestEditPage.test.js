@@ -26,7 +26,7 @@ jest.mock('react-router-dom', () => {
         __esModule: true,
         ...originalModule,
         useParams: () => ({
-            id: 17
+            id: 3
         }),
         Navigate: (x) => { mockNavigate(x); return null; }
     };
@@ -43,7 +43,7 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).timeout();
+            axiosMock.onGet("/api/helprequests", { params: { id: 3 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -73,7 +73,7 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).reply(200, {
+            axiosMock.onGet("/api/helprequests", { params: { id: 3 } }).reply(200, {
                 id: 3,
                 requesterEmail: "john@email.com",
                 teamId: "Team 15",
@@ -140,6 +140,32 @@ describe("HelpRequestEditPage tests", () => {
             expect(solveButton).not.toBeChecked();
 
             expect(submitButton).toHaveTextContent("Update");
+
+            fireEvent.change(requesterEmailField, { target: { value: "john@email.com" } });
+            fireEvent.change(teamIdField, { target: { value: 'Team 5' } });
+            fireEvent.change(tableOrBreakoutRoomEmailField, { target: { value: '1' } });
+            fireEvent.change(requestTimeField, { target: { value: "2024-01-01T00:00" } });
+            fireEvent.change(explanationField, { target: { value: "no" } });
+            fireEvent.click(solveButton);
+            fireEvent.click(submitButton);
+
+            await waitFor(() => expect(mockToast).toBeCalled());
+            expect(mockToast).toBeCalledWith("Help Request Updated - id: 3 requesterEmail: james@email.com");
+            
+            expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
+
+            expect(axiosMock.history.put.length).toBe(1); // times called
+            expect(axiosMock.history.put[0].params).toEqual({ id: 3 });
+            expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
+                requesterEmail: "john@email.com",
+                teamId: "Team 5",
+                tableOrBreakoutRoom: "1",
+                requestTime: "2024-01-01T00:00",
+                explanation: "no",
+                solved: true
+            })); // posted object
+
+
         });
 
         test("Changes when you click Update", async () => {
