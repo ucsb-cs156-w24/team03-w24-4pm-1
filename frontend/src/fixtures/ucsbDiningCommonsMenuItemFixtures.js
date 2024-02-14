@@ -1,11 +1,11 @@
-const ucsbDiningCommonsMenuItemsFixtures = {
+const ucsbDiningCommonsMenuItemFixtures = {
     oneDiningCommonsMenuItem: {
         "id": 1,
         "station": "dlg",
         "name": "dlg",
         "code": "dlg"
     },
-    threeDiningCommonsMenuItems: [
+    threeDiningCommonsMenuItem: [
         {
             "id": 1,
             "station": "dlg",
@@ -28,4 +28,4 @@ const ucsbDiningCommonsMenuItemsFixtures = {
 };
 
 
-export { ucsbDiningCommonsMenuItemsFixtures };
+export { ucsbDiningCommonsMenuItemFixtures };
