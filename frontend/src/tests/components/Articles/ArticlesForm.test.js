@@ -87,10 +87,18 @@ describe("ArticlesForm tests", () => {
         const submitButton = screen.getByText(/Create/);
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Title is required/);
-        expect(screen.getByText(/URL is required/)).toBeInTheDocument();
+        await screen.findByText(/Title is required./);
+        expect(screen.getByText(/URL is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Email is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Date is required./)).toBeInTheDocument();
 
         const titleInput = screen.getByTestId(`${testId}-title`);
+        expect(screen.getByTestId(`${testId}-url`)).toBeInTheDocument();
+        expect(screen.getByTestId(`${testId}-email`)).toBeInTheDocument();
+        expect(screen.getByTestId(`${testId}-explanation`)).toBeInTheDocument();
+        expect(screen.getByTestId(`${testId}-dateAdded`)).toBeInTheDocument();
+        expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
         fireEvent.change(titleInput, { target: { value: "a".repeat(31) } });
         fireEvent.click(submitButton);
 
@@ -98,5 +106,31 @@ describe("ArticlesForm tests", () => {
             expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
         });
     });
+
+    // test("No Error messsages on good input", async () => {
+
+    //     const mockSubmitAction = jest.fn();
+
+
+    //     render(
+    //         <QueryClientProvider client={queryClient}>
+    //             <Router>
+    //                 <ArticlesForm />
+    //             </Router>
+    //         </QueryClientProvider>
+    //     );
+
+    //     await screen.findByTestId(`${testId}-dateAdded`);
+    //     const submitButton = screen.getByTestId(`${testId}-submit`);
+
+    //     const dateAddedField = screen.getByTestId(`${testId}-dateAdded`);
+    //     fireEvent.change(dateAddedField, { target: { value: '2022-01-02T12:00' } });
+    //     fireEvent.click(submitButton);
+
+    //     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
+
+    //     expect(screen.queryByText(/dateAdded must be in ISO format/)).not.toBeInTheDocument();
+
+    // });
 
 });
