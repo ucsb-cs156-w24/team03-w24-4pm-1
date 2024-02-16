@@ -2,16 +2,19 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/UCSBDateUtils"
+import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/ucsbDiningCommonsMenuItemUtils"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function UCSBDiningCommonsMenuItemTable({ diningcommonsmenuitem, currentUser }) {
+export default function UCSBDiningCommonsMenuItemTable({
+    ucsbDiningCommonsMenuItem,
+    currentUser,
+    testIdPrefix = "UCSBDiningCommonsMenuItemTable" }) {
 
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
-        navigate(`/ucsbdiningcommonsmenuitem/edit/${cell.row.values.id}`)
+        navigate(`/ucsbDiningCommonsMenuItem/edit/${cell.row.values.id}`)
     }
 
     // Stryker disable all : hard to test for query caching
@@ -19,41 +22,42 @@ export default function UCSBDiningCommonsMenuItemTable({ diningcommonsmenuitem, 
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/ucsbdiningcommonsmenuitem/all"]
+        ["/api/ucsbDiningCommonsMenuItem/all"]
     );
     // Stryker restore all 
 
     // Stryker disable next-line all : TODO try to make a good test for this
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
 
-
     const columns = [
         {
             Header: 'id',
             accessor: 'id', // accessor is the "key" in the data
         },
+
         {
-            Header: 'station',
-            accessor: 'station',
-        },
-        {
-            Header: 'name',
+            Header: 'Name',
             accessor: 'name',
         },
         {
-            Header: 'code',
+            Header: 'Station',
+            accessor: 'station',
+        },
+        {   
+            Header: 'Code',
             accessor: 'code',
-        }
+        } 
     ];
 
     if (hasRole(currentUser, "ROLE_ADMIN")) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "UCSBDiningCommonsMenuItemTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "UCSBDiningCommonsMenuItemTable"));
+        columns.push(ButtonColumn("Edit", "primary", editCallback, testIdPrefix));
+        columns.push(ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix));
     } 
 
     return <OurTable
-        data={diningcommonsmenuitem}
+        data={ucsbDiningCommonsMenuItem}
         columns={columns}
-        testid={"UCSBDiningCommonsMenuItemTable"}
+        testid={testIdPrefix}
     />;
 };
+
