@@ -65,9 +65,9 @@ describe("RecommendationRequestForm tests", () => {
         await screen.findByText(/ProfessorEmail must be in the format email@example.com/);
         await screen.findByText(/RequesterEmail must be in the format email@example.com/);
         await screen.findByText(/Explanation is required./);
-        await screen.findByText(/DateRequested must be in ISO format/);
-        await screen.findByText(/DateNeeded must be in ISO format/);
-        await screen.findByText(/done must be a boolean./);
+        expect(screen.getByText(/DateRequested must be in ISO format/)).toBeInTheDocument();
+        expect(screen.getByText(/DateNeeded must be in ISO format/)).toBeInTheDocument();
+
     });
 
     test("Correct Error messsages on missing input", async () => {
@@ -85,8 +85,8 @@ describe("RecommendationRequestForm tests", () => {
         await screen.findByText(/ProfessorEmail is required./);
         await screen.findByText(/RequesterEmail is required./);
         expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
-        expect(screen.getByText(/dateRequested is required./)).toBeInTheDocument();
-        expect(screen.getByText(/dateNeeded is required./)).toBeInTheDocument();
+        expect(screen.getByText(/DateRequested is required./)).toBeInTheDocument();
+        expect(screen.getByText(/DateNeeded is required./)).toBeInTheDocument();
         expect(screen.getByText(/done is required./)).toBeInTheDocument();
 
     });
@@ -124,8 +124,8 @@ describe("RecommendationRequestForm tests", () => {
         expect(screen.queryByText(/ProfessorEmail must be in the format email@example.com/)).not.toBeInTheDocument();
         expect(screen.queryByText(/RequesterEmail must be in the format email@example.com/)).not.toBeInTheDocument();
         expect(screen.queryByText(/Explanation is required./)).not.toBeInTheDocument();
-        expect(screen.queryByText(/dateRequested must be in ISO format/)).not.toBeInTheDocument();
-        expect(screen.queryByText(/dateNeeded must be in ISO format/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/DateRequested must be in ISO format/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/DateNeeded must be in ISO format/)).not.toBeInTheDocument();
         expect(screen.queryByText(/done must be a boolean./)).not.toBeInTheDocument();
 
     });

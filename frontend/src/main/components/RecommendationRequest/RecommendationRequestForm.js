@@ -110,7 +110,7 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                             {...register("dateRequested", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.dateRequested && 'dateRequested is required.'}
+                            {errors.dateRequested && 'DateRequested is required.'}
                             {errors.dateRequested?.type === 'pattern' && 'DateRequested must be in ISO format'}
                         </Form.Control.Feedback>
                     </Form.Group>
@@ -126,7 +126,7 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                             {...register("dateNeeded", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.dateNeeded && 'dateNeeded is required.'}
+                            {errors.dateNeeded && 'DateNeeded is required.'}
                             {errors.dateNeeded?.type === 'pattern' && 'DateNeeded must be in ISO format'}
                         </Form.Control.Feedback>
                     </Form.Group>
