@@ -1,6 +1,6 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import RecommendationRequestForm from "main/components/RecommendationRequest/RecommendationRequestForm";
-import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
+import { RecommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const mockedNavigate = jest.fn();
@@ -29,7 +29,7 @@ describe("RecommendationRequestForm tests", () => {
 
         render(
             <Router  >
-                <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRecommendationRequest} />
+                <RecommendationRequestForm initialContents={RecommendationRequestFixtures.oneRecommendationRequest} />
             </Router>
         );
         await screen.findByTestId(/RecommendationRequestForm-id/);
