@@ -49,8 +49,8 @@ describe("RecommendationRequestForm tests", () => {
         const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
         const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
         const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
-        const DateRequestedField = screen.getByTestId("RecommendationRequestForm-DateRequested");
-        const DateNeededField = screen.getByTestId("RecommendationRequestForm-DateNeeded");
+        const DateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
+        const DateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
         const doneField = screen.getByTestId("RecommendationRequestForm-done");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
@@ -106,8 +106,8 @@ describe("RecommendationRequestForm tests", () => {
         const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
         const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
         const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
-        const DateRequestedField = screen.getByTestId("RecommendationRequestForm-DateRequested");
-        const DateNeededField = screen.getByTestId("RecommendationRequestForm-DateNeeded");
+        const DateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
+        const DateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
         const doneField = screen.getByTestId("RecommendationRequestForm-done");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
