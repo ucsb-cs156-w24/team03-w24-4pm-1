@@ -48,10 +48,6 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                     isInvalid={Boolean(errors.title)}
                     {...register("title", {
                         required: "Title is required.",
-                        maxLength : {
-                            value: 30,
-                            message: "Max length 30 characters"
-                        }
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
