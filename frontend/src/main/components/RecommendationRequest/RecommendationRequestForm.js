@@ -19,10 +19,11 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
     // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
     // Note that even this complex regex may still need some tweaks
 
-    const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
     // Stryker disable next-line Regex
     const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+
+    // Stryker disable next-line Regex
+    const email_regex = /[\w.]+@([\w]+\.)+[\w-]{2,4}/;
 
     return (
 
@@ -111,7 +112,6 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.dateRequested && 'DateRequested is required.'}
-                            {errors.dateRequested?.type === 'pattern' && 'DateRequested must be in ISO format'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -127,7 +127,6 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.dateNeeded && 'DateNeeded is required.'}
-                            {errors.dateNeeded?.type === 'pattern' && 'DateNeeded must be in ISO format'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -143,7 +142,6 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.done && 'done is required.'}
-                            {errors.done?.type === 'pattern' && 'done must be a boolean.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>

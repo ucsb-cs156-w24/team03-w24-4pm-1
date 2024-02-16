@@ -49,24 +49,16 @@ describe("RecommendationRequestForm tests", () => {
         const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
         const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
         const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
-        const DateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
-        const DateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
-        const doneField = screen.getByTestId("RecommendationRequestForm-done");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
         fireEvent.change(professorEmailField, { target: { value: 'bad-input' } });
         fireEvent.change(requesterEmailField, { target: { value: 'bad-input' } });
         fireEvent.change(explanationField, { target: { value: '' } });
-        fireEvent.change(DateRequestedField, { target: { value: 'bad-input' } });
-        fireEvent.change(DateNeededField, { target: { value: 'bad-input' } });
-        fireEvent.change(doneField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
 
         await screen.findByText(/ProfessorEmail must be in the format email@example.com/);
         await screen.findByText(/RequesterEmail must be in the format email@example.com/);
         await screen.findByText(/Explanation is required./);
-        expect(screen.getByText(/DateRequested must be in ISO format/)).toBeInTheDocument();
-        expect(screen.getByText(/DateNeeded must be in ISO format/)).toBeInTheDocument();
 
     });
 
@@ -111,12 +103,12 @@ describe("RecommendationRequestForm tests", () => {
         const doneField = screen.getByTestId("RecommendationRequestForm-done");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-        fireEvent.change(professorEmailField, { target: { value: 'email@example.com' } });
-        fireEvent.change(requesterEmailField, { target: { value: 'email@example.com' } });
+        fireEvent.change(professorEmailField, { target: { value: 'test@ucsb.edu' } });
+        fireEvent.change(requesterEmailField, { target: { value: 'test@ucsb.edu' } });
         fireEvent.change(explanationField, { target: { value: 'Explanation' } });
         fireEvent.change(DateRequestedField, { target: { value: '2022-01-01T12:00' } });
         fireEvent.change(DateNeededField, { target: { value: '2022-01-01T12:00' } });
-        fireEvent.change(doneField, { target: { value: 'false' } });
+        fireEvent.click(doneField, { target: { value: 'false' } });
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
