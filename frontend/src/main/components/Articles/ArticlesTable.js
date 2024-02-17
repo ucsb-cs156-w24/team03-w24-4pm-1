@@ -22,7 +22,7 @@ export default function ArticlesTable({
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/articles/all"]
+        ["/api/ucsbarticles/all"]
     );
     // Stryker restore all 
 
