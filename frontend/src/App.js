@@ -71,19 +71,19 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
-              <Route exact path="/helprequests" element={<HelpRequestIndexPage />} />
+              <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
             </>
           )
         }
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
-              <Route exact path="/helprequests/edit/:id" element={<HelpRequestEditPage />} />
-              <Route exact path="/helprequests/create" element={<HelpRequestCreatePage />} />
+              <Route exact path="/helprequest/edit/:id" element={<HelpRequestEditPage />} />
+              <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
             </>
           )
         }
-         {
+        {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/placeholder" element={<PlaceholderIndexPage />} />
@@ -102,12 +102,10 @@ function App() {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/ucsbdiningcommonsmenuitem" element={<UCSBDiningCommonsMenuItemIndexPage />} />
-            </>
-          )
-        }
         {
-          hasRole(currentUser, "ROLE_ADMIN") && (
+          hasRole(currentUser, "ROLE_USER") && (
             <>
+              <Route exact path="/articles" element={<ArticlesIndexPage />} />
               <Route exact path="/ucsbdiningcommonsmenuitem/edit/:id" element={<UCSBDiningCommonsMenuItemEditPage />} />
               <Route exact path="/ucsbdiningcommonsmenuitem/create" element={<UCSBDiningCommonsMenuItemCreatePage />} />
             </>
