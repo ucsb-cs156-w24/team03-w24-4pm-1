@@ -20,9 +20,9 @@ const ucsbDiningCommonsMenuItemFixtures = {
         },
         {
             "id": 3,
-            "station": "ortega",
-            "name": "ortega",
-            "code": "ortega"
+            "station": "ortega1",
+            "name": "ortega2",
+            "code": "ortega3"
         }
     ]
 };

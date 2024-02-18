@@ -10,11 +10,11 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
 
     const currentUser = useCurrentUser();
 
-    const { data: ucsbDiningCommonsMenuItem, error: _error, status: _status } =
+    const { data: ucsbDiningCommonMenuItems, error: _error, status: _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
-            ["/api/ucsbDiningCommonsMenuItem/all"],
-            { method: "GET", url: "/api/ucsbDiningCommonsMenuItem/all" },
+            ["/api/ucsbdiningcommonsmenuitem/all"],
+            { method: "GET", url: "/api/ucsbdiningcommonsmenuitem/all" },
             // Stryker disable next-line all : don't test default value of empty list
             []
         );
@@ -24,10 +24,10 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
             return (
                 <Button
                     variant="primary"
-                    href="/ucsbDiningCommonsMenuItem/create"
+                    href="/ucsbdiningcommonsmenuitem/create"
                     style={{ float: "right" }}
                 >
-                    Create UCSBDiningCommonsMenuItem
+                    Create Menu Item
                 </Button>
             )
         } 
@@ -37,9 +37,9 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
         <BasicLayout>
             <div className="pt-2">
                 {createButton()}
-                <h1>UCSBDiningCommonsMenuItem</h1>
-                <UCSBDiningCommonsMenuItemTable ucsbDiningCommonsMenuItem={ucsbDiningCommonsMenuItem} currentUser={currentUser} />
+                <h1>Menu Items</h1>
+                <UCSBDiningCommonsMenuItemTable ucsbDiningCommonMenuItems={ucsbDiningCommonMenuItems} currentUser={currentUser} />
             </div>
         </BasicLayout>
     );
-}
+} 
