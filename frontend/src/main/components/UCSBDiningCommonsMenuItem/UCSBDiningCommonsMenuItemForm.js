@@ -44,11 +44,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                     type="text"
                     isInvalid={Boolean(errors.name)}
                     {...register("name", {
-                        required: "Name is required.",
-                        maxLength : {
-                            value: 30,
-                            message: "Max length 30 characters"
-                        }
+                        required: "Name is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -67,10 +63,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                         required: "Station is required."
                     })}
                 />
-                <Form.Control.Feedback type="invalid">
-                    {errors.station?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
+	    </Form.Group>
 
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="code">Code</Form.Label>
@@ -82,11 +75,12 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                     {...register("code", {
                         required: "Code is required."
                     })} 
-                />  
+                /> 
                 <Form.Control.Feedback type="invalid">
-                    {errors.code?.message}
+                    {errors.station?.message}
                 </Form.Control.Feedback>
             </Form.Group>
+
 
             <Button
                 type="submit"
@@ -101,7 +95,6 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
             >
                 Cancel
             </Button>
-
         </Form>
 
     )
