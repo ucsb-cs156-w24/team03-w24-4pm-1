@@ -63,6 +63,9 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                         required: "Station is required."
                     })}
                 />
+                <Form.Control.Feedback type="invalid">
+                    {errors.station?.message}
+                </Form.Control.Feedback>
 	    </Form.Group>
 
             <Form.Group className="mb-3" >
@@ -77,7 +80,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                     })} 
                 /> 
                 <Form.Control.Feedback type="invalid">
-                    {errors.station?.message}
+                    {errors.code?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
