@@ -79,7 +79,7 @@ describe("UCSBDiningCommonsMenuItemIndexPage tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
         expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
 
-        const createUCSBDiningCommonsMenuItemButton = screen.queryByText("Create ucsbDiningCommonsMenuItem");
+        const createUCSBDiningCommonsMenuItemButton = screen.queryByText("Create UCSBDiningCommonsMenuItem");
         expect(createUCSBDiningCommonsMenuItemButton).not.toBeInTheDocument();
 
         const name = screen.getByText("ortega1");
