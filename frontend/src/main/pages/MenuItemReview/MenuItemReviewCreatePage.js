@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function MenuItemReviewCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (menuItemReview) => ({
-    url: "/api/menuitemreview/post",
+    url: "/api/menuitemreviews/post",
     method: "POST",
     params: {
       itemId: menuItemReview.itemId,
