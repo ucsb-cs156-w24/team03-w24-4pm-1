@@ -111,7 +111,7 @@ describe("UserTable tests", () => {
 
     const editButton = screen.getByTestId(`MenuItemReviewTable-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
-
+    
     fireEvent.click(editButton);
 
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/menuitemreview/edit/1'));
@@ -135,7 +135,7 @@ describe("UserTable tests", () => {
 
     const deleteButton = screen.getByTestId(`MenuItemReviewTable-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
-
+    
     fireEvent.click(deleteButton);
 
   });
