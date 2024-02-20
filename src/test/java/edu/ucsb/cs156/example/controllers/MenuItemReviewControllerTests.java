@@ -46,14 +46,14 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
     @Test
     public void logged_out_users_cannot_get_all() throws Exception {
-            mockMvc.perform(get("/api/menuitemreview/all"))
+            mockMvc.perform(get("/api/menuitemreviews/all"))
                             .andExpect(status().is(403)); // logged out users can't get all
     }
 
     @WithMockUser(roles = { "USER" })
     @Test
     public void logged_in_users_can_get_all() throws Exception {
-            mockMvc.perform(get("/api/menuitemreview/all"))
+            mockMvc.perform(get("/api/menuitemreviews/all"))
                             .andExpect(status().is(200)); // logged
     }
 
@@ -103,14 +103,14 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
     @Test
     public void logged_out_users_cannot_post() throws Exception {
-            mockMvc.perform(post("/api/menuitemreview/post"))
+            mockMvc.perform(post("/api/menuitemreviews/post"))
                             .andExpect(status().is(403));
     }
 
     @WithMockUser(roles = { "USER" })
     @Test
     public void logged_in_regular_users_cannot_post() throws Exception {
-            mockMvc.perform(post("/api/menuitemreview/post"))
+            mockMvc.perform(post("/api/menuitemreviews/post"))
                             .andExpect(status().is(403)); // only admins can post
     }
 
@@ -133,7 +133,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("/api/menuitemreview/post?itemId=1&reviewerEmail=test@ucsb.edu&stars=5&dateReviewed=2022-01-03T00:00:00&comments=good")
+                            post("/api/menuitemreviews/post?itemId=1&reviewerEmail=test@ucsb.edu&stars=5&dateReviewed=2022-01-03T00:00:00&comments=good")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
@@ -148,7 +148,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
     @Test
     public void logged_out_users_cannot_get_by_id() throws Exception {
-            mockMvc.perform(get("/api/menuitemreview?id=7"))
+            mockMvc.perform(get("/api/menuitemreviews?id=7"))
                             .andExpect(status().is(403)); //users that are logged out cannot get by id
     }
 
@@ -170,7 +170,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             when(menuItemReviewRepository.findById(eq(1L))).thenReturn(Optional.of(menuItemReview));
 
             // act
-            MvcResult response = mockMvc.perform(get("/api/menuitemreview?id=1"))
+            MvcResult response = mockMvc.perform(get("/api/menuitemreviews?id=1"))
                             .andExpect(status().isOk()).andReturn();
 
             // assert
@@ -188,7 +188,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             when(menuItemReviewRepository.findById(eq(1L))).thenReturn(Optional.empty());
 
             // act
-            MvcResult response = mockMvc.perform(get("/api/menuitemreview?id=1"))
+            MvcResult response = mockMvc.perform(get("/api/menuitemreviews?id=1"))
                             .andExpect(status().isNotFound()).andReturn();
 
             // assert
@@ -231,7 +231,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/menuitemreview?id=1")
+                            put("/api/menuitemreviews?id=1")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
@@ -267,7 +267,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            put("/api/menuitemreview?id=1")
+                            put("/api/menuitemreviews?id=1")
                                             .contentType(MediaType.APPLICATION_JSON)
                                             .characterEncoding("utf-8")
                                             .content(requestBody)
@@ -281,7 +281,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
     }
 
-    // Tests for DELETE /api/menuitemreview?id=... 
+    // Tests for DELETE /api/menuitemreviews?id=... 
 
     @WithMockUser(roles = { "ADMIN", "USER" })
     @Test
