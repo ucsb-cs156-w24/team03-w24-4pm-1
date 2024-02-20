@@ -1,5 +1,5 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import MenuItemReviewForm from "main/components/MenuItemReviews/menuItemReviewForm";
+import MenuItemReviewForm from "main/components/MenuItemReviews/MenuItemReviewForm";
 import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
