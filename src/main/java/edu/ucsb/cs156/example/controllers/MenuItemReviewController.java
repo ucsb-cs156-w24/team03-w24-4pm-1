@@ -7,7 +7,6 @@ import edu.ucsb.cs156.example.repositories.MenuItemReviewRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
 import lombok.extern.slf4j.Slf4j;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,9 +31,8 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/menuitemreview")
 @RestController
 @Slf4j
-
-public class MenuItemReviewController extends ApiController{
-
+public class MenuItemReviewCotroller extends ApiController{
+    
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
 
@@ -50,7 +48,7 @@ public class MenuItemReviewController extends ApiController{
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public MenuItemReview postMenuItemReview(
-            @Parameter(name="itemID") @RequestParam long itemID,
+            @Parameter(name="itemId") @RequestParam long itemId,
             @Parameter(name="reviewerEmail") @RequestParam String reviewerEmail,
             @Parameter(name="stars") @RequestParam int stars,
             @Parameter(name="comments") @RequestParam String comments,
@@ -63,7 +61,7 @@ public class MenuItemReviewController extends ApiController{
         log.info("dateReviewed={}", dateReviewed);
 
         MenuItemReview menuItemReview = new MenuItemReview();
-        menuItemReview.setItemID(itemID);
+        menuItemReview.setItemId(itemId);
         menuItemReview.setReviewerEmail(reviewerEmail);
         menuItemReview.setStars(stars);
         menuItemReview.setComments(comments);
@@ -77,29 +75,10 @@ public class MenuItemReviewController extends ApiController{
     @Operation(summary= "Get a single review")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
-    public MenuItemReview getById( 
-            @Parameter(name="id") @RequestParam Long id) { 
-        MenuItemReview menuItemReview = menuItemReviewRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
-        return menuItemReview;
-    }
-
-    @Operation(summary= "Update a single review")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping("")
-    public MenuItemReview updateMenuItemReview(
-            @Parameter(name="id") @RequestParam Long id,
-            @RequestBody @Valid MenuItemReview incoming) {
-
+    public MenuItemReview getById(
+            @Parameter(name="id") @RequestParam Long id) {
         MenuItemReview menuItemReview = menuItemReviewRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
-
-        menuItemReview.setItemID(incoming.getItemID());
-        menuItemReview.setReviewerEmail(incoming.getReviewerEmail());
-        menuItemReview.setStars(incoming.getStars());
-        menuItemReview.setComments(incoming.getComments());
-        menuItemReview.setDateReviewed(incoming.getDateReviewed());
-
-        menuItemReviewRepository.save(menuItemReview);
 
         return menuItemReview;
     }
@@ -116,6 +95,24 @@ public class MenuItemReviewController extends ApiController{
         return genericMessage("MenuItemReview with id %s deleted".formatted(id));
     }
 
+    @Operation(summary= "Update a single review")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("")
+    public MenuItemReview updateMenuItemReview(
+            @Parameter(name="id") @RequestParam Long id,
+            @RequestBody @Valid MenuItemReview incoming) {
 
+        MenuItemReview menuItemReview = menuItemReviewRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
 
+        menuItemReview.setItemId(incoming.getItemId());
+        menuItemReview.setReviewerEmail(incoming.getReviewerEmail());
+        menuItemReview.setStars(incoming.getStars());
+        menuItemReview.setComments(incoming.getComments());
+        menuItemReview.setDateReviewed(incoming.getDateReviewed());
+
+        menuItemReviewRepository.save(menuItemReview);
+
+        return menuItemReview;
+    }
 }
