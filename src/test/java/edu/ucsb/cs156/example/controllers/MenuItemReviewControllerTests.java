@@ -34,7 +34,7 @@ import static org.mockito.Mockito.when;
 
 @WebMvcTest(controllers = MenuItemReviewController.class)
 @Import(TestConfig.class)
-public class MenuItemReviewsControllerTests extends ControllerTestCase{
+public class MenuItemReviewControllerTests extends ControllerTestCase{
 
     @MockBean
     MenuItemReviewRepository menuItemReviewRepository;
