@@ -28,7 +28,7 @@ import javax.validation.Valid;
 
 import java.time.LocalDateTime;
 
-@Tag(name = "MenuItemReview")
+@Tag(name = "MenuItemReviews")
 @RequestMapping("/api/menuitemreviews")
 @RestController
 @Slf4j
@@ -41,7 +41,7 @@ public class MenuItemReviewController extends ApiController{
     @Operation(summary= "List all menu item reviews")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<MenuItemReview> allMenuItemReview() {
+    public Iterable<MenuItemReview> allMenuItemReviews() {
         Iterable<MenuItemReview> reviews = menuItemReviewRepository.findAll();
         return reviews;
     }
