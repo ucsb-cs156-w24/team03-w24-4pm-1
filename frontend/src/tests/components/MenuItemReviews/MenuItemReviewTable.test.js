@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
-import MenuItemReviewTable from "main/components/MenuItemReviews/MenuItemReviewTable"
+import MenuItemReviewTable from "main/components/MenuItemReviews/menuItemReviewTable"
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
