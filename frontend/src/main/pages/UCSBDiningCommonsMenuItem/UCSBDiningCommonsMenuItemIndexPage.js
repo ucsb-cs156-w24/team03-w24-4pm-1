@@ -2,19 +2,19 @@ import React from 'react'
 import { useBackend } from 'main/utils/useBackend';
 
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import HelpRequestTable from 'main/components/HelpRequest/HelpRequestTable';
+import UCSBDiningCommonsMenuItemTable from 'main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemTable';
 import { useCurrentUser , hasRole} from 'main/utils/currentUser'
 import { Button } from 'react-bootstrap';
 
-export default function HelpRequestIndexPage() {
+export default function UCSBDiningCommonsMenuItemIndexPage() {
 
     const currentUser = useCurrentUser();
 
-    const { data: helpRequest, error: _error, status: _status } =
+    const { data: ucsbdiningcommonsmenuitem, error: _error, status: _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
-            ["/api/helprequests/all"],
-            { method: "GET", url: "/api/helprequests/all" },
+            ["/api/ucsbdiningcommonsmenuitem/all"],
+            { method: "GET", url: "/api/ucsbdiningcommonsmenuitem/all" },
             // Stryker disable next-line all : don't test default value of empty list
             []
         );
@@ -24,10 +24,10 @@ export default function HelpRequestIndexPage() {
             return (
                 <Button
                     variant="primary"
-                    href="/helprequest/create"
+                    href="/ucsbdiningcommonsmenuitem/create"
                     style={{ float: "right" }}
                 >
-                    Create Help Request
+                    Create UCSBDiningCommonsMenuItem
                 </Button>
             )
         } 
@@ -37,8 +37,8 @@ export default function HelpRequestIndexPage() {
         <BasicLayout>
             <div className="pt-2">
                 {createButton()}
-                <h1>Help Requests</h1>
-                <HelpRequestTable helpRequest={helpRequest} currentUser={currentUser} />
+                <h1>UCSBDiningCommonsMenuItem</h1>
+                <UCSBDiningCommonsMenuItemTable ucsbDiningCommonsMenuItem={ucsbdiningcommonsmenuitem} currentUser={currentUser} />
             </div>
         </BasicLayout>
     );

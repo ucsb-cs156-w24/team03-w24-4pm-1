@@ -1,51 +1,48 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
-import HelpRequestForm from 'main/components/HelpRequest/HelpRequestForm';
+import UCSBDiningCommonsMenuItemForm from 'main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm';
 import { Navigate } from 'react-router-dom'
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
-export default function HelpRequestEditPage({storybook=false}) {
+export default function UCSBDiningCommonsMenuItemEditPage({storybook=false}) {
     let { id } = useParams();
 
-    const { data: helpRequest, _error, _status } =
+    const { data: ucsbdiningcommonsmenuitem, _error, _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
-            [`/api/helprequests?id=${id}`],
+            [`/api/ucsbdiningcommonsmenuitem?id=${id}`],
             {  // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
                 method: "GET",
-                url: `/api/helprequests`,
+                url: `/api/ucsbdiningcommonsmenuitem`,
                 params: {
                     id
                 }
             }
         );
 
-    const objectToAxiosPutParams = (helpRequest) => ({
-        url: "/api/helprequests",
+    const objectToAxiosPutParams = (ucsbdiningcommonsmenuitem) => ({
+        url: "/api/ucsbdiningcommonsmenuitem",
         method: "PUT",
         params: {
-            id: helpRequest.id,
+            id: ucsbdiningcommonsmenuitem.id,
         },
         data: {
-            requesterEmail: helpRequest.requesterEmail,
-            teamId: helpRequest.teamId,
-            tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
-            requestTime: helpRequest.requestTime,
-            explanation: helpRequest.explanation,
-            solved: helpRequest.solved
+            name: ucsbdiningcommonsmenuitem.name,
+            station: ucsbdiningcommonsmenuitem.station,
+	    code: ucsbdiningcommonsmenuitem.code,
         }
     });
 
-    const onSuccess = (helpRequest) => {
-        toast(`Help Request Updated - id: ${helpRequest.id} requesterEmail: ${helpRequest.requesterEmail}`);
+    const onSuccess = (ucsbdiningcommonsmenuitem) => {
+        toast(`UCSBDiningCommonsMenuItem Updated - id: ${ucsbdiningcommonsmenuitem.id} name: ${ucsbdiningcommonsmenuitem.name}`);
     }
 
     const mutation = useBackendMutation(
         objectToAxiosPutParams,
         { onSuccess },
         // Stryker disable next-line all : hard to set up test for caching
-        [`/api/helprequests?id=${id}`]
+        [`/api/ucsbdiningcommonsmenuitem?id=${id}`]
     );
 
     const { isSuccess } = mutation
@@ -55,15 +52,15 @@ export default function HelpRequestEditPage({storybook=false}) {
     }
 
     if (isSuccess && !storybook) {
-        return <Navigate to="/helprequest" />
+        return <Navigate to="/ucsbdiningcommonsmenuitem" />
     }
 
     return (
         <BasicLayout>
             <div className="pt-2">
-                <h1>Edit Help Request</h1>
+                <h1>Edit UCSBDiningCommonsMenuItem</h1>
                 {
-                    helpRequest && <HelpRequestForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={helpRequest} />
+                    ucsbdiningcommonsmenuitem && <UCSBDiningCommonsMenuItemForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={ucsbdiningcommonsmenuitem} />
                 }
             </div>
         </BasicLayout>
