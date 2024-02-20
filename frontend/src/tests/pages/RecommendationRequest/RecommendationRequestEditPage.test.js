@@ -76,8 +76,8 @@ describe("RecommendationRequestEditPage tests", () => {
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
             axiosMock.onGet("/api/recommendationrequest", { params: { id: 17 } }).reply(200, {
                 id: 17,
-                professorEmail: "Email",
-                requesterEmail: "Email",
+                professorEmail: "Email@example.com",
+                requesterEmail: "Email@example.com",
                 explanation: "Explanation",
                 dateRequested: "2022-12-25T08:00",
                 dateNeeded: "2022-12-25T08:00",
@@ -85,8 +85,8 @@ describe("RecommendationRequestEditPage tests", () => {
             });
             axiosMock.onPut('/api/recommendationrequest').reply(200, {
                 id: 17,
-                professorEmail: "Email",
-                requesterEmail: "Email",
+                professorEmail: "Email@example.com",
+                requesterEmail: "Email@example.com",
                 explanation: "newExplanation",
                 dateRequested: "2022-12-25T08:00",
                 dateNeeded: "2022-12-25T08:00",
@@ -115,7 +115,7 @@ describe("RecommendationRequestEditPage tests", () => {
                 </QueryClientProvider>
             );
 
-            await screen.findByTestId("RecommendationRequestForm-itemId");
+            await screen.findByTestId("RecommendationRequestForm-professorEmail");
 
             const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
             const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
@@ -125,8 +125,8 @@ describe("RecommendationRequestEditPage tests", () => {
             const doneField = screen.getByTestId("RecommendationRequestForm-done");
             const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-            expect(professorEmailField).toHaveValue("Email");
-            expect(requesterEmailField).toHaveValue("Email");
+            expect(professorEmailField).toHaveValue("Email@example.com");
+            expect(requesterEmailField).toHaveValue("Email@example.com");
             expect(explanationField).toHaveValue("Explanation");
             expect(dateRequestedField).toHaveValue("2022-12-25T08:00");
             expect(dateNeededField).toHaveValue("2022-12-25T08:00");
@@ -154,15 +154,15 @@ describe("RecommendationRequestEditPage tests", () => {
             const doneField = screen.getByTestId("RecommendationRequestForm-done");
             const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-            expect(professorEmailField).toHaveValue("Email");
-            expect(requesterEmailField).toHaveValue("Email");
+            expect(professorEmailField).toHaveValue("Email@example.com");
+            expect(requesterEmailField).toHaveValue("Email@example.com");
             expect(explanationField).toHaveValue("Explanation");
             expect(dateRequestedField).toHaveValue("2022-12-25T08:00");
             expect(dateNeededField).toHaveValue("2022-12-25T08:00");
             expect(doneField).not.toBeChecked();
 
-            fireEvent.change(professorEmailField, { target: { value: 'Email' } });
-            fireEvent.change(requesterEmailField, { target: { value: 'Email' } });
+            fireEvent.change(professorEmailField, { target: { value: 'Email@newexample.com' } });
+            fireEvent.change(requesterEmailField, { target: { value: 'Email@newexample.com' } });
             fireEvent.change(explanationField, { target: { value: 'newExplanation' } });
             fireEvent.change(dateRequestedField, { target: { value: "2022-12-25T08:00" } });
             fireEvent.change(dateNeededField, { target: { value: "2022-12-25T08:00" } });
@@ -170,14 +170,14 @@ describe("RecommendationRequestEditPage tests", () => {
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("recommendationRequest Updated - id: 17 professorEmail: Email requesterEmail: Email explanation: newExplanation dateRequested: 2022-12-25T08:00 dateNeeded: 2022-12-25T08:00 done: true");
+            expect(mockToast).toBeCalledWith("recommendationRequest Updated - id: 17 professorEmail: Email@example.com requesterEmail: Email@example.com explanation: newExplanation dateRequested: 2022-12-25T08:00 dateNeeded: 2022-12-25T08:00 done: true");
             expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
-                professorEmail: "Email",
-                requesterEmail: "Email",
+                professorEmail: "Email@newexample.com",
+                requesterEmail: "Email@newexample.com",
                 explanation: "newExplanation",
                 dateRequested: "2022-12-25T08:00",
                 dateNeeded: "2022-12-25T08:00",
