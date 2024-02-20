@@ -88,7 +88,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             when(menuItemReviewRepository.findAll()).thenReturn(expectedReviews);
 
             // act
-            MvcResult response = mockMvc.perform(get("/api/menuitemreview/all"))
+            MvcResult response = mockMvc.perform(get("/api/menuitemreviews/all"))
                             .andExpect(status().isOk()).andReturn();
 
             // assert
@@ -99,7 +99,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             assertEquals(expectedJson, responseString);
     }
 
-    // Tests for POST /api/menuitemreview/post...
+    // Tests for POST /api/menuitemreviews/post...
 
     @Test
     public void logged_out_users_cannot_post() throws Exception {
@@ -302,7 +302,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            delete("/api/menuitemreview?id=1")
+                            delete("/api/menuitemreviews?id=1")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
@@ -324,7 +324,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            delete("/api/menuitemreview?id=1")
+                            delete("/api/menuitemreviews?id=1")
                                             .with(csrf()))
                             .andExpect(status().isNotFound()).andReturn();
 
