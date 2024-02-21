@@ -1,9 +1,9 @@
-const RecommendationRequestsFixtures = {
+const RecommendationRequestFixtures = {
     oneRecommendationRequest: {
         "id": 1,
         "professorEmail": "Email",
         "requesterEmail": "Email",
-        "explanation": "Explanation",
+        "explanation": "newExplanation",
         "dateRequested": "2022-01-01T12:00:00",
         "dateNeeded": "2022-01-01T12:00:00",
         "done": false
@@ -13,7 +13,7 @@ const RecommendationRequestsFixtures = {
             "id": 1,
             "professorEmail": "Email",
             "requesterEmail": "Email",
-            "explanation": "Explanation",
+            "explanation": "newerExplanation",
             "dateRequested": "2022-01-01T12:00:00",
             "dateNeeded": "2022-01-01T12:00:00",
             "done": false
@@ -22,7 +22,7 @@ const RecommendationRequestsFixtures = {
             "id": 2,
             "professorEmail": "Email",
             "requesterEmail": "Email",
-            "explanation": "Explanation",
+            "explanation": "newererExplanation",
             "dateRequested": "2022-02-01T12:00:00",
             "dateNeeded": "2022-02-01T12:00:00",
             "done": false
@@ -31,7 +31,7 @@ const RecommendationRequestsFixtures = {
             "id": 3,
             "professorEmail": "Email",
             "requesterEmail": "Email",
-            "explanation": "Explanation",
+            "explanation": "newestExplanation",
             "dateRequested": "2022-03-01T12:00:00",
             "dateNeeded": "2022-03-01T12:00:00",
             "done": false
@@ -40,4 +40,4 @@ const RecommendationRequestsFixtures = {
 };
 
 
-export { RecommendationRequestsFixtures };
+export { RecommendationRequestFixtures };
