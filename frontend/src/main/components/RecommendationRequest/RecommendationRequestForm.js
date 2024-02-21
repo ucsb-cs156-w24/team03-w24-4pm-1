@@ -136,9 +136,9 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                         <Form.Control
                             data-testid="RecommendationRequestForm-done"
                             id="done"
-                            type="checkbox"
+                            type="switch"
                             isInvalid={Boolean(errors.done)}
-                            {...register("done", { required: true, pattern: /true|false/i})}
+                            {...register("done", { required: true})}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.done && 'done is required.'}
