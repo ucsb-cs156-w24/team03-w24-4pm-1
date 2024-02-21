@@ -25,7 +25,7 @@ const RecommendationRequestFixtures = {
             "explanation": "newererExplanation",
             "dateRequested": "2022-02-01T12:00:00",
             "dateNeeded": "2022-02-01T12:00:00",
-            "done": false
+            "done": true
         },
         {
             "id": 3,

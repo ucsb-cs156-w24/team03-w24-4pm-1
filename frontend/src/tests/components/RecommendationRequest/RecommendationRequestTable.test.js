@@ -30,7 +30,7 @@ describe("UserTable tests", () => {
     );
 
     const expectedHeaders = ["id", "ProfessorEmail", "RequesterEmail", "Explanation", "DateRequested", "DateNeeded", "Done"];
-    const expectedFields = ["id", "professorEmail", "requesterEmail", "explanation", "dateRequested", "dateNeeded", "done"];
+    const expectedFields = ["id", "professorEmail", "requesterEmail", "explanation", "dateRequested", "dateNeeded", "Done"];
     const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -46,7 +46,9 @@ describe("UserTable tests", () => {
     });
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-Done`)).toHaveTextContent("false");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-Done`)).toHaveTextContent("true");
 
     const editButton = screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).not.toBeInTheDocument();
@@ -70,7 +72,7 @@ describe("UserTable tests", () => {
     );
 
     const expectedHeaders = ["id", "ProfessorEmail", "RequesterEmail", "Explanation", "DateRequested", "DateNeeded", "Done"];
-    const expectedFields = ["id", "professorEmail", "requesterEmail", "explanation", "dateRequested", "dateNeeded", "done"];
+    const expectedFields = ["id", "professorEmail", "requesterEmail", "explanation", "dateRequested", "dateNeeded", "Done"];
     const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
