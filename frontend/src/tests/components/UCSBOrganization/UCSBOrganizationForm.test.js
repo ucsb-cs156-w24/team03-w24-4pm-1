@@ -48,6 +48,7 @@ describe("UCSBOrganizationForm tests", () => {
         expect(screen.getByTestId(`${testIdPrefix}-orgCode`)).toHaveValue(orgFixtures.oneOrg.orgCode);
         expect(screen.getByTestId(`${testIdPrefix}-orgTranslationShort`)).toHaveValue(orgFixtures.oneOrg.orgTranslationShort);
         expect(screen.getByTestId(`${testIdPrefix}-orgTranslation`)).toHaveValue(orgFixtures.oneOrg.orgTranslation);
+        expect(screen.getByTestId(`${testIdPrefix}-inactive`)).toHaveValue("false");
         expect(screen.getByTestId(`${testIdPrefix}-orgCode`)).toBeDisabled();
     });
 
