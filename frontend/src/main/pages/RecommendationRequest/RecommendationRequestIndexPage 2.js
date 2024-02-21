@@ -2,11 +2,11 @@ import React from 'react'
 import { useBackend } from 'main/utils/useBackend';
 
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import UCSBOrganizationTable from 'main/components/UCSBOrganization/UCSBOrganizationTable';
+import RecommendationRequestTable from 'main/components/RecommendationRequest/RecommendationRequestTable';
 import { Button } from 'react-bootstrap';
 import { useCurrentUser , hasRole} from 'main/utils/currentUser';
 
-export default function UCSBOrganizationIndexPage() {
+export default function RecommendationRequestIndexPage() {
 
   const currentUser = useCurrentUser();
 
@@ -15,20 +15,20 @@ export default function UCSBOrganizationIndexPage() {
         return (
             <Button
                 variant="primary"
-                href="/ucsborganizations/create"
+                href="/recommendationrequest/create"
                 style={{ float: "right" }}
             >
-                Create UCSB Organization 
+                Create RecommendationRequest 
             </Button>
         )
     } 
   }
-  
-  const { data: orgs, error: _error, status: _status } =
+
+  const { data: requests, error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/ucsborganizations/all"],
-      { method: "GET", url: "/api/ucsborganizations/all" },
+      ["/api/recommendationrequest/all"],
+      { method: "GET", url: "/api/recommendationrequest/all" },
       []
     );
 
@@ -36,8 +36,8 @@ export default function UCSBOrganizationIndexPage() {
     <BasicLayout>
       <div className="pt-2">
         {createButton()}
-        <h1>UCSB Organizations</h1>
-        <UCSBOrganizationTable orgs={orgs} currentUser={currentUser} />
+        <h1>RecommendationRequest</h1>
+        <RecommendationRequestTable requests={requests} currentUser={currentUser} />
       </div>
     </BasicLayout>
   )
