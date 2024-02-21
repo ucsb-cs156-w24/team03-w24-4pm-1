@@ -2,7 +2,7 @@
 *~
 
 # Stryker reports
-
+frontend/stryker.log
 frontend/.stryker-tmp
 frontend/reports
 
