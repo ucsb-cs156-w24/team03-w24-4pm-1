@@ -77,10 +77,10 @@ describe("UCSBOrganizationCreatePage tests", () => {
 
         const createButton = screen.getByText("Create");
 
-        fireEvent.change(orgCode, { target: { value: 'testCode' } });
-        fireEvent.change(orgTranslationShort, { target: { value: 'test-ts' } });
-        fireEvent.change(orgTranslation, { target: { value: 'test-t' } });
-        fireEvent.change(inactive, { target: { value: 'false' } });
+        fireEvent.change(orgCodeInput, { target: { value: 'testCode' } });
+        fireEvent.change(orgTranslationShortInput, { target: { value: 'test-ts' } });
+        fireEvent.change(orgTranslationInput, { target: { value: 'test-t' } });
+        fireEvent.change(inactiveInput, { target: { value: 'false' } });
         fireEvent.click(createButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
