@@ -79,7 +79,6 @@ describe("RecommendationRequestForm tests", () => {
         expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
         expect(screen.getByText(/DateRequested is required./)).toBeInTheDocument();
         expect(screen.getByText(/DateNeeded is required./)).toBeInTheDocument();
-        expect(screen.getByText(/done is required./)).toBeInTheDocument();
 
     });
 

@@ -90,7 +90,7 @@ describe("RecommendationRequestCreatePage tests", () => {
         fireEvent.change(explanationField, { target: { value: 'newExplanation' } });
         fireEvent.change(dateRequestedField, { target: { value: '2023-02-02T00:00' } });
         fireEvent.change(dateNeededField, { target: { value: '2023-02-02T00:00' } });
-        fireEvent.click(doneField);
+        fireEvent.change(doneField);
 
         expect(submitButton).toBeInTheDocument();
 
