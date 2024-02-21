@@ -50,10 +50,10 @@ describe("UCSBOrganizationCreatePage tests", () => {
 
     test("on submit, makes request to backend, and redirects to /ucsborganization", async () => {
         const ucsbOrganization = {
-            orgCode: "123",
-            orgTranslationShort: "Test Org Short",
-            orgTranslation: "Test Organization",
-            inactive: true
+            orgCode: "testCode",
+            orgTranslationShort: "test-ts",
+            orgTranslation: "test-t",
+            inactive: 'false'
         };
 
         axiosMock.onPost("/api/ucsborganization/post").reply(200, ucsbOrganization);
@@ -77,10 +77,10 @@ describe("UCSBOrganizationCreatePage tests", () => {
 
         const createButton = screen.getByText("Create");
 
-        fireEvent.change(orgCodeInput, { target: { value: '123' } });
-        fireEvent.change(orgTranslationShortInput, { target: { value: 'Test Org Short' } });
-        fireEvent.change(orgTranslationInput, { target: { value: 'Test Organization' } });
-        fireEvent.click(inactiveInput);
+        fireEvent.change(orgCode, { target: { value: 'testCode' } });
+        fireEvent.change(orgTranslationShort, { target: { value: 'test-ts' } });
+        fireEvent.change(orgTranslation, { target: { value: 'test-t' } });
+        fireEvent.change(inactive, { target: { value: 'false' } });
         fireEvent.click(createButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
