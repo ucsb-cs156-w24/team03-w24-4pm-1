@@ -1,14 +1,11 @@
 const orgFixtures = {
-    oneOrg:
-    [
-      {
+    oneOrg:{
         "orgCode": "test",
         "orgTranslationShort": "test-ts",
         "orgTranslation": "test-t",
         "inactive": false      
-      }
-    ],
-
+    
+    },
     threeOrgs:
     [
         {
