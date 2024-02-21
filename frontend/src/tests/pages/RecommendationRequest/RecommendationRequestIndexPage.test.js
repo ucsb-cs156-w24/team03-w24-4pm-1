@@ -71,7 +71,7 @@ describe("RecommendationRequestIndexPage tests", () => {
         // arrange
         setupUserOnly();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/recommendationrequest/all").reply(200, RecommendationRequestFixtures.threeRequests);
+        axiosMock.onGet("/api/recommendationrequest/all").reply(200, RecommendationRequestFixtures.threeRecommendationRequests);
 
         // act
         render(
@@ -123,7 +123,7 @@ describe("RecommendationRequestIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/recommendationrequest/all").reply(200, RecommendationRequestFixtures.threeRequests);
+        axiosMock.onGet("/api/recommendationrequest/all").reply(200, RecommendationRequestFixtures.threeRecommendationRequests);
         axiosMock.onDelete("/api/recommendationrequest").reply(200, "RecommendationRequest with id 1 was deleted");
 
         // act

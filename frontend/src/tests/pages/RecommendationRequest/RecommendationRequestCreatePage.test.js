@@ -55,8 +55,8 @@ describe("RecommendationRequestCreatePage tests", () => {
         const queryClient = new QueryClient();
         const recommendationRequest = {
             "id": 17,
-            professorEmail: "Email",
-            requesterEmail: "Email",
+            professorEmail: "Email@example.com",
+            requesterEmail: "Email@example.com",
             explanation: "Explanation",
             dateRequested: "2022-02-02T00:00",
             dateNeeded: "2022-02-02T00:00",
@@ -85,12 +85,12 @@ describe("RecommendationRequestCreatePage tests", () => {
         const doneField = screen.getByTestId("RecommendationRequestForm-done");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-        fireEvent.change(professorEmailField, { target: { value: 'newEmail' } });
-        fireEvent.change(requesterEmailField, { target: { value: 'newEmail' } });
+        fireEvent.change(professorEmailField, { target: { value: 'newEmail@example.com' } });
+        fireEvent.change(requesterEmailField, { target: { value: 'newEmail@example.com' } });
         fireEvent.change(explanationField, { target: { value: 'newExplanation' } });
         fireEvent.change(dateRequestedField, { target: { value: '2023-02-02T00:00' } });
         fireEvent.change(dateNeededField, { target: { value: '2023-02-02T00:00' } });
-        fireEvent.click(doneField, { target: { value: 'true' } });
+        fireEvent.click(doneField);
 
         expect(submitButton).toBeInTheDocument();
 
@@ -100,8 +100,8 @@ describe("RecommendationRequestCreatePage tests", () => {
 
         expect(axiosMock.history.post[0].params).toEqual(
             {
-                professorEmail: "newEmail",
-                requesterEmail: "newEmail",
+                professorEmail: "newEmail@example.com",
+                requesterEmail: "newEmail@example.com",
                 explanation: "newExplanation",
                 dateRequested: "2023-02-02T00:00",
                 dateNeeded: "2023-02-02T00:00",
@@ -109,7 +109,7 @@ describe("RecommendationRequestCreatePage tests", () => {
             }
         );
 
-        expect(mockToast).toBeCalledWith("New recommendationRequest Created - id: 17 professorEmail: newEmail requesterEmail: newEmail");
+        expect(mockToast).toBeCalledWith("New recommendationRequest Created - id: 17 professorEmail: Email@example.com requesterEmail: Email@example.com");
         expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
     });
 
