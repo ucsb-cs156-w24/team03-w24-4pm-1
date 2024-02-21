@@ -80,9 +80,11 @@ describe("UCSBOrganizationForm tests", () => {
 
         const orgTranslationShort = await screen.findByText(/orgTranslationShort is required/);
         const orgTranslation = await screen.findByText(/orgTranslation is required/);
+        const inactive = await screen.findByText(/inactive is required/);
 
         expect(orgTranslationShort).toBeInTheDocument();
         expect(orgTranslation).toBeInTheDocument();
+        expect(inactive).toBeInTheDocument();
 
         await waitFor(() => {
             expect(screen.getByText(/orgCode is required/)).toBeInTheDocument();
