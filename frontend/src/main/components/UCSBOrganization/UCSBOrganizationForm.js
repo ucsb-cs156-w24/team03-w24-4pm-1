@@ -32,6 +32,7 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                     {...register("orgCode", {
                         required: "orgCode is required.",
                     })}
+                    disabled={initialContents ? true : false}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.orgCode?.message}
