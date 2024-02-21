@@ -105,7 +105,7 @@ describe("RecommendationRequestCreatePage tests", () => {
                 explanation: "newExplanation",
                 dateRequested: "2023-02-02T00:00",
                 dateNeeded: "2023-02-02T00:00",
-                done: true
+                done: false
             }
         );
 
