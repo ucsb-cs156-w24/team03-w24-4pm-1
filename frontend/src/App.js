@@ -15,9 +15,15 @@ import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
 import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
 import HelpRequestEditPage from "main/pages/HelpRequest/HelpRequestEditPage";
 
+
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
+
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
+
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
@@ -128,21 +134,30 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
+
+              <Route exact path="/ucsborganization" element={<UCSBOrganizationIndexPage />} />
+
               <Route exact path="/recommendationrequest" element={<RecommendationRequestIndexPage />} />
               <Route exact path="/ucsbdiningcommonsmenuitem" element={<UCSBDiningCommonsMenuItemIndexPage />} />
               <Route exact path="/articles" element={<ArticlesIndexPage />} />
+
             </>
           )
         }
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
+
+              <Route exact path="/ucsborganization/edit/:orgCode" element={<UCSBOrganizationEditPage />} />
+              <Route exact path="/ucsborganization/create" element={<UCSBOrganizationCreatePage />} />
+
               <Route exact path="/recommendationrequest/edit/:id" element={<RecommendationRequestEditPage />} />
               <Route exact path="/recommendationrequest/create" element={<RecommendationRequestCreatePage />} />
               <Route exact path="/ucsbdiningcommonsmenuitem/edit/:id" element={<UCSBDiningCommonsMenuItemEditPage />} />
               <Route exact path="/ucsbdiningcommonsmenuitem/create" element={<UCSBDiningCommonsMenuItemCreatePage />} />
               <Route exact path="/articles/edit/:id" element={<ArticlesEditPage />} />
               <Route exact path="/articles/create" element={<ArticlesCreatePage />} />
+
             </>
           )
         }
