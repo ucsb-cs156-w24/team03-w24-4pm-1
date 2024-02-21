@@ -14,15 +14,6 @@ const articlesFixtures = {
     threeArticles:
     [
         {
-            "id": 1,
-            "title": "Handy Spring Utility Classes",
-            "url": "https://twitter.com/maciejwalkowiak/status/1511736828369719300?t=gGXpmBH4y4eY9OBSUInZEg&s=09",
-            "explanation": "A lot of really useful classes are built into Spring",
-            "email": "bdover@ucsb.edu",
-            "dateAdded": "1995-02-04T12:00:00" 
-        },
-
-        {
             "id": 2,
             "title": "How artificial intelligence is transforming the world",
             "url": "https://www.brookings.edu/articles/how-artificial-intelligence-is-transforming-the-world/",
@@ -33,12 +24,20 @@ const articlesFixtures = {
 
         {
             "id": 3,
-            "title": "Trump calls Florence 'one of the wettest we've ever seen from the standpoint of water'",
+            "title": "Trump calls Florence 'one of the wettest we've ever seen from the standpoint of water",
             "url": "https://abcnews.go.com/Politics/trump-calls-florence-wettest-standpoint-water/story?id=57930056",
             "explanation": "From the standpoint of water.",
             "email": "ahanjabi@ucsb.edu",
             "dateAdded": "2022-07-04T12:00:00" 
         },
+        {
+            "id": 4,
+            "title": "Handy Spring Utility Classes",
+            "url": "https://twitter.com/maciejwalkowiak/status/1511736828369719300?t=gGXpmBH4y4eY9OBSUInZEg&s=09",
+            "explanation": "A lot of really useful classes are built into Spring",
+            "email": "bdover@ucsb.edu",
+            "dateAdded": "1995-02-04T12:00:00" 
+        }
         
     ]
 };
