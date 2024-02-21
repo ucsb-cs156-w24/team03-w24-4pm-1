@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 595e3db71fa88225abd2ed9e376653cdeb9a906d
 import React from 'react';
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
@@ -32,6 +35,10 @@ Default.parameters = {
             return res(ctx.status(200),ctx.json({}));
         }),
     ],
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> 595e3db71fa88225abd2ed9e376653cdeb9a906d

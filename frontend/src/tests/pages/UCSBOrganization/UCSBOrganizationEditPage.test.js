@@ -163,14 +163,25 @@ describe("UCSBOrganizationEditPage tests", () => {
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ orgCode: "test" });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
+<<<<<<< HEAD
+=======
+                orgCode: 'test',
+>>>>>>> 595e3db71fa88225abd2ed9e376653cdeb9a906d
                 orgTranslationShort: 'test',
                 orgTranslation: "testing",
                 inactive: "true"
             })); 
 
         });
+<<<<<<< HEAD
 
        
     });
 });
 
+=======
+
+
+    });
+});
+>>>>>>> 595e3db71fa88225abd2ed9e376653cdeb9a906d
